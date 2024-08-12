@@ -43,10 +43,46 @@ class UserPass(UserBase):
     password: str
 
 
+class ProductBase(BaseModel):
+    id: int
+    name: str
+    price: int
+    quantity:int   #default=1 ??
+    product_type:str
+
+    class Config:
+        orm_mode = True
+
+# class ProductInBasket(ProductBase):
+#     quantity:int   #default=1 ??
+#     product_type:str #default=1 ??
+
+
+class BuyBasketBase(BaseModel):
+    id: int
+    name: str
+    is_active:bool
+    user:UserBase
+
+    products: List[ProductBase]
+    
+
+    class Config:
+        orm_mode = True
+
+class ProductSchema(ProductBase):
+    buy_baskets: List[BuyBasketBase]
+
 class User(UserBase):
     id: int
     is_active: bool
-    items: List[Item] = []
+    buy_baskets: List[BuyBasketBase] = []
 
     class Config:
-        orm_mode = True #todo ?
+        orm_mode = True 
+
+
+
+
+
+

@@ -19,7 +19,7 @@ def get_hashed_password(password: str) -> str:
 def verify_password(password: str, hashed_pass: str) -> bool:
     return password_context.verify(password, hashed_pass)
 
-def create_access_token(subject: Union[str, Any], expires_delta: int = None) -> str:
+def create_access_token(subject: Union[str, int], expires_delta: int = None) -> str: #todo check type
     if expires_delta is not None:
         expires_delta = time.time() + expires_delta
         
