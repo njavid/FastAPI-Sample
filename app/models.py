@@ -21,7 +21,7 @@ class BasketProduct(Base):
     product_id = Column(ForeignKey('products.id'), primary_key=True)
     basket_id = Column(ForeignKey('buy_baskets.id'), primary_key=True)
     quantity = Column(Integer, nullable=False,default=1)   #default=1 ??
-    product_type = Column(String,nullable=False,default=1) #default=1 ??
+    
 
 
 class BuyBasket(Base):
@@ -43,6 +43,7 @@ class Product(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     price = Column(Integer, nullable=False)
+    measurement_unit = Column(String,nullable=False,default=1) #default=1 ??
     
     # Many-to-many relationship with BuyBasket
     buy_baskets = relationship('BuyBasket', secondary="basket_products", back_populates='products')

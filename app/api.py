@@ -95,12 +95,12 @@ async def upload_buy_excel(file: UploadFile, db: Session = Depends(get_db)):
         print(row)
         print('3-------')
         print(int(row[1]))
-        product = db.query(Product).filter(Product.id == int(row[1])).first()
+        product = db.query(Product).filter(Product.id == int(row[1]),Product.measurement_unit==row[3]).first()
 
         #get current user active basket:
         basket = db.query(BuyBasket).filter(BuyBasket.user_id == user.id, BuyBasket.is_active == True).first()
         
-        basket_product = BasketProduct(product_id=product.id,basket_id=basket.id,quantity=row[2],product_type=row[3])
+        basket_product = BasketProduct(product_id=product.id,basket_id=basket.id,quantity=row[2])
         db.add(basket_product)
         db.commit()
 

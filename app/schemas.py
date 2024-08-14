@@ -48,14 +48,13 @@ class ProductBase(BaseModel):
     name: str
     price: int
     quantity:int   #default=1 ??
-    product_type:str
+    measurement_unit:str
 
     class Config:
         orm_mode = True
 
 # class ProductInBasket(ProductBase):
 #     quantity:int   #default=1 ??
-#     product_type:str #default=1 ??
 
 
 class BuyBasketBase(BaseModel):
